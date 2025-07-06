@@ -1,236 +1,247 @@
-<html lang="en">
+<html lang="hi">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Invoice - SHRI GANESH MOTORS</title>
+  <title>Shri Ganesh Motors Bill</title>
   <style>
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 40px;
-      background-color: #f9f9f9;
-      color: #333;
-    }
-    .header, .sub-header {
-      text-align: center;
-    }
-    .header {
-      font-size: 28px;
-      font-weight: bold;
-      color: #444;
-    }
-    .sub-header {
-      font-size: 14px;
-      margin-bottom: 40px;
-    }
-    .section {
+      font-family: 'Courier New', monospace;
+      background: #eee;
       display: flex;
-      justify-content: space-between;
-      margin-bottom: 20px;
-      flex-wrap: wrap;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
     }
-    .section > div {
-      width: 48%;
+    .container {
+      background: white;
+      width: 380px;
+      padding: 15px;
+      border: 1px solid #000;
     }
-    .label {
-      font-weight: bold;
-      display: inline-block;
-      width: 120px;
-    }
-    input[type="text"], input[type="number"], input[type="date"] {
-      width: 60%;
-      padding: 5px;
+    h2, h3 {
+      text-align: center;
       margin: 5px 0;
-      border: 1px solid #ccc;
-      border-radius: 4px;
+    }
+    label {
+      display: block;
+      margin-top: 8px;
+      font-size: 13px;
+    }
+    input {
+      width: 100%;
+      padding: 4px;
+      font-size: 13px;
     }
     table {
       width: 100%;
+      margin-top: 10px;
+      font-size: 12px;
       border-collapse: collapse;
-      background: #fff;
     }
     th, td {
-      border: 1px solid #ccc;
-      padding: 10px;
-      text-align: center;
+      border: 1px solid #aaa;
+      padding: 4px;
+      text-align: left;
     }
-    th {
-      background-color: #eee;
-    }
-    .no-print {
-      margin-top: 20px;
-    }
-    .no-print button {
-      padding: 8px 15px;
-      margin-right: 10px;
-      background: #007BFF;
-      color: #fff;
+    .btn {
+      margin-top: 10px;
+      padding: 6px 10px;
+      background: green;
+      color: white;
       border: none;
-      border-radius: 5px;
       cursor: pointer;
+      font-size: 13px;
     }
-    .no-print button:hover {
-      background: #0056b3;
-    }
-    @media print {
-      .no-print, .no-print-column {
-        display: none !important;
-      }
-      input {
-        border: none;
-      }
-    }
-    .section-title {
-      text-align: center;
-      font-size: 20px;
-      font-weight: bold;
-      margin: 30px 0 10px;
-    }
-    .total-amount {
+    .invoice-section {
+      display: none;
+      background: white;
+      width: 300px;
+      padding: 10px;
       margin-top: 20px;
-      font-size: 18px;
-      text-align: right;
-      font-weight: bold;
+      border: 1px solid #000;
     }
-    .conditions {
+    .footer {
+      margin-top: 20px;
       font-size: 12px;
-      margin-top: 40px;
+      text-align: center;
     }
     .signature {
+      margin-top: 40px;
       text-align: right;
-      margin-top: 60px;
+      font-size: 13px;
+      padding-right: 20px;
+    }
+    @media print {
+      body * {
+        visibility: hidden;
+      }
+      .invoice-section, .invoice-section * {
+        visibility: visible;
+      }
+      .invoice-section {
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
     }
   </style>
 </head>
 <body>
+<div class="container">
+  <h2>Shri Ganesh Motors, Borunda</h2>
+  <p style="text-align:center">342604 | 6376978548 | shriganeshmotors734@gmail.com</p>
 
-  <div class="header">SHRI GANESH MOTORS</div>
-  <div class="sub-header">Near Bus Stand Bilara Road, Borunda, Jodhpur, Rajasthan 342604 | M. 6376978548</div>
+  <label>Invoice Number:</label><input type="text" id="invoice">
+  <label>Date:</label><input type="date" id="date">
+  <label>Customer Name:</label><input type="text" id="customer">
+  <label>Mobile:</label><input type="text" id="mobile">
+  <label>Address:</label><input type="text" id="address">
+  <label>Frame No:</label><input type="text" id="frame">
+  <label>Registration No:</label><input type="text" id="regis">
+  <label>Model Name:</label><input type="text" id="model">
+  <label>Service Type:</label><input type="text" id="service">
 
-  <div class="section">
-    <div>
-      <div><span class="label">Customer Name:</span><input type="text" id="custName"></div>
-      <div><span class="label">Address:</span><input type="text" id="address"></div>
-      <div><span class="label">Mobile No:</span><input type="text" id="mobile"></div>
-      <div><span class="label">Frame No:</span><input type="text" id="frame"></div>
-      <div><span class="label">Register No:</span><input type="text" id="reg"></div>
-      <div><span class="label">Model:</span><input type="text" id="model"></div>
-      <div><span class="label">Service Type:</span><input type="text" id="service"></div>
-    </div>
-    <div>
-      <div><span class="label">Invoice No:</span><input type="text" id="invoice"></div>
-      <div><span class="label">Date:</span><input type="date" id="date"></div>
-    </div>
-  </div>
-
-  <div class="section-title">Parts Details</div>
-  <table id="partsTable">
+  <h3>Parts Details</h3>
+  <table id="parts-table">
     <thead>
-      <tr>
-        <th>Part Name</th>
-        <th>Quantity</th>
-        <th>MRP</th>
-        <th>Total</th>
-        <th class="no-print-column">Action</th>
-      </tr>
+      <tr><th>Sr.</th><th>Parts Name</th><th>Qty</th><th>Amount</th><th>Remark</th><th>Action</th></tr>
     </thead>
-    <tbody id="partsBody"></tbody>
+    <tbody></tbody>
   </table>
+  <button class="btn" onclick="addRow('parts')">Add Parts Row</button>
 
-  <div class="no-print">
-    <button onclick="addPart()">Add Part</button>
-  </div>
+  <h3>Labour Details</h3>
+  <table id="labour-table">
+    <thead>
+      <tr><th>Sr.</th><th>Charge Name</th><th>Amount</th><th>Action</th></tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+  <button class="btn" onclick="addRow('labour')">Add Labour Row</button>
 
-  <div id="labourSection">
-    <div class="section-title">Labour Details</div>
-    <table id="labourTable">
-      <thead>
-        <tr>
-          <th>Labour Name</th>
-          <th>Charges</th>
-          <th class="no-print-column">Action</th>
-        </tr>
-      </thead>
-      <tbody id="labourBody"></tbody>
-    </table>
-  </div>
+  <h3>Total Amount: ₹<span id="total">0</span></h3>
 
-  <div class="no-print">
-    <button onclick="addLabour()">Add Labour</button>
-    <button onclick="window.print()">Print</button>
-  </div>
+  <button class="btn" onclick="generateInvoice()">Generate Invoice</button>
+</div>
 
-  <div class="total-amount">
-    Total Amount: ₹<span id="totalAmount">0.00</span>
-  </div>
+<div class="invoice-section" id="invoice-section">
+  <h2>Shri Ganesh Motors</h2>
+  <p style="text-align:center">Near Bus Stand, Bilara Road, Borunda - 342604</p>
+  <p style="text-align:center">Mobile: 6376978548 | Email: shriganeshmotors734@gmail.com</p>
+  <table>
+    <tr><td>Invoice No:</td><td id="out-invoice"></td></tr>
+    <tr><td>Date:</td><td id="out-date"></td></tr>
+    <tr><td>Customer:</td><td id="out-customer"></td></tr>
+    <tr><td>Mobile:</td><td id="out-mobile"></td></tr>
+    <tr><td>Address:</td><td id="out-address"></td></tr>
+    <tr><td>Frame No:</td><td id="out-frame"></td></tr>
+    <tr><td>Regis No:</td><td id="out-regis"></td></tr>
+    <tr><td>Model:</td><td id="out-model"></td></tr>
+    <tr><td>Service:</td><td id="out-service"></td></tr>
+  </table>
+  <h3>Parts Details</h3>
+  <table id="out-parts-table">
+    <thead>
+      <tr><th>Sr.</th><th>Parts Name</th><th>Qty</th><th>Amount</th><th>Remark</th></tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+  <h3>Labour Details</h3>
+  <table id="out-labour-table">
+    <thead>
+      <tr><th>Sr.</th><th>Charge Name</th><th>Amount</th></tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+  <h3>Total: ₹<span id="out-total"></span></h3>
+  <div class="signature">Authorised Signatory</div>
+  <div class="footer">Thank you for choosing Shri Ganesh Motors. We value your trust and support.</div>
+</div>
 
-  <div class="conditions">
-    <p><strong>Terms & Conditions:</strong> Goods once sold will not be taken back. Warranty as per manufacturer.</p>
-  </div>
+<button class="btn" onclick="window.print()" style="margin-top: 20px">Print Invoice</button>
 
-  <div class="signature">
-    <p>Authorized Signature</p>
-  </div>
+<script>
+function addRow(type) {
+  const table = document.getElementById(type + '-table').getElementsByTagName('tbody')[0];
+  const row = table.insertRow();
+  const sr = table.rows.length;
+  if (type === 'parts') {
+    row.innerHTML = `
+      <td>${sr}</td>
+      <td><input type="text" oninput="updateTotal()"></td>
+      <td><input type="number" value="1" oninput="updateTotal()"></td>
+      <td><input type="number" value="0" oninput="updateTotal()"></td>
+      <td><input type="text"></td>
+      <td><button onclick="removeRow(this)">Remove</button></td>
+    `;
+  } else {
+    row.innerHTML = `
+      <td>${sr}</td>
+      <td><input type="text" oninput="updateTotal()"></td>
+      <td><input type="number" value="0" oninput="updateTotal()"></td>
+      <td><button onclick="removeRow(this)">Remove</button></td>
+    `;
+  }
+  updateTotal();
+}
 
-  <script>
-    function addPart() {
-      const tbody = document.getElementById("partsBody");
-      const row = document.createElement("tr");
-      row.innerHTML = `
-        <td><input type="text" name="partName[]"></td>
-        <td><input type="number" name="qty[]" oninput="calculateTotal()"></td>
-        <td><input type="number" name="mrp[]" step="0.01" oninput="calculateTotal()"></td>
-        <td class="partTotal">0.00</td>
-        <td class="no-print-column"><button onclick="removeRow(this)">Remove</button></td>
-      `;
-      tbody.appendChild(row);
-    }
+function removeRow(btn) {
+  const row = btn.parentNode.parentNode;
+  row.parentNode.removeChild(row);
+  updateTotal();
+}
 
-    function addLabour() {
-      const tbody = document.getElementById("labourBody");
-      const row = document.createElement("tr");
-      row.innerHTML = `
-        <td><input type="text" name="labourName[]"></td>
-        <td><input type="number" name="charges[]" step="0.01" oninput="calculateTotal()"></td>
-        <td class="no-print-column"><button onclick="removeRow(this)">Remove</button></td>
-      `;
-      tbody.appendChild(row);
-      updateLabourSectionVisibility();
-    }
+function updateTotal() {
+  let total = 0;
+  document.querySelectorAll('#parts-table tbody tr').forEach(row => {
+    const qty = parseFloat(row.cells[2].children[0].value) || 0;
+    const amt = parseFloat(row.cells[3].children[0].value) || 0;
+    total += qty * amt;
+  });
+  document.querySelectorAll('#labour-table tbody tr').forEach(row => {
+    const amt = parseFloat(row.cells[2].children[0].value) || 0;
+    total += amt;
+  });
+  document.getElementById('total').innerText = total.toFixed(2);
+}
 
-    function removeRow(button) {
-      button.closest("tr").remove();
-      updateLabourSectionVisibility();
-      calculateTotal();
-    }
+function generateInvoice() {
+  document.getElementById('out-invoice').innerText = document.getElementById('invoice').value;
+  document.getElementById('out-date').innerText = document.getElementById('date').value;
+  document.getElementById('out-customer').innerText = document.getElementById('customer').value;
+  document.getElementById('out-mobile').innerText = document.getElementById('mobile').value;
+  document.getElementById('out-address').innerText = document.getElementById('address').value;
+  document.getElementById('out-frame').innerText = document.getElementById('frame').value;
+  document.getElementById('out-regis').innerText = document.getElementById('regis').value;
+  document.getElementById('out-model').innerText = document.getElementById('model').value;
+  document.getElementById('out-service').innerText = document.getElementById('service').value;
+  document.getElementById('out-total').innerText = document.getElementById('total').innerText;
 
-    function updateLabourSectionVisibility() {
-      const tbody = document.getElementById("labourBody");
-      const section = document.getElementById("labourSection");
-      section.style.display = tbody.children.length > 0 ? 'block' : 'none';
-    }
+  const partsOutTable = document.getElementById('out-parts-table').getElementsByTagName('tbody')[0];
+  partsOutTable.innerHTML = "";
+  document.querySelectorAll('#parts-table tbody tr').forEach((row, index) => {
+    const partRow = partsOutTable.insertRow();
+    partRow.innerHTML = `
+      <td>${index + 1}</td>
+      <td>${row.cells[1].children[0].value}</td>
+      <td>${row.cells[2].children[0].value}</td>
+      <td>${row.cells[3].children[0].value}</td>
+      <td>${row.cells[4].children[0].value}</td>
+    `;
+  });
 
-    function calculateTotal() {
-      let total = 0;
+  const labourOutTable = document.getElementById('out-labour-table').getElementsByTagName('tbody')[0];
+  labourOutTable.innerHTML = "";
+  document.querySelectorAll('#labour-table tbody tr').forEach((row, index) => {
+    const labourRow = labourOutTable.insertRow();
+    labourRow.innerHTML = `
+      <td>${index + 1}</td>
+      <td>${row.cells[1].children[0].value}</td>
+      <td>${row.cells[2].children[0].value}</td>
+    `;
+  });
 
-      // Calculate Parts Total
-      document.querySelectorAll("#partsTable tbody tr").forEach(row => {
-        const qty = parseFloat(row.querySelector('[name="qty[]"]').value) || 0;
-        const mrp = parseFloat(row.querySelector('[name="mrp[]"]').value) || 0;
-        const partTotal = qty * mrp;
-        row.querySelector(".partTotal").innerText = partTotal.toFixed(2);
-        total += partTotal;
-      });
-
-      // Add Labour Charges
-      document.querySelectorAll('[name="charges[]"]').forEach(input => {
-        total += parseFloat(input.value) || 0;
-      });
-
-      document.getElementById("totalAmount").innerText = total.toFixed(2);
-    }
-
-    window.onload = updateLabourSectionVisibility;
-  </script>
-
+  document.getElementById('invoice-section').style.display = 'block';
+}
+</script>
 </body>
 </html>
