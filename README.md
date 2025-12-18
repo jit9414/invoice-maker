@@ -60,7 +60,7 @@ table{
     width:100%;
     border-collapse:collapse;
     margin-top:10px;
-    table-layout:fixed;   /* 🔴 IMPORTANT */
+    table-layout:fixed;
 }
 
 table th, table td{
@@ -68,7 +68,6 @@ table th, table td{
     padding:6px;
     text-align:center;
     font-size:13px;
-    word-wrap:break-word;
 }
 
 table input{
@@ -76,24 +75,21 @@ table input{
     box-sizing:border-box;
 }
 
-/* ===== PARTS TABLE COLUMN FIX ===== */
+/* ===== PARTS TABLE WIDTH ===== */
 #partsTable th:nth-child(1),
-#partsTable td:nth-child(1){ width:5%; }
+#partsTable td:nth-child(1){ width:8%; }
 
 #partsTable th:nth-child(2),
-#partsTable td:nth-child(2){ width:25%; }
+#partsTable td:nth-child(2){ width:42%; }
 
 #partsTable th:nth-child(3),
-#partsTable td:nth-child(3){ width:8%; }
+#partsTable td:nth-child(3){ width:15%; }
 
 #partsTable th:nth-child(4),
-#partsTable td:nth-child(4){ width:12%; }
+#partsTable td:nth-child(4){ width:20%; }
 
 #partsTable th:nth-child(5),
-#partsTable td:nth-child(5){ width:35%; }  /* Remark */
-
-#partsTable th:nth-child(6),
-#partsTable td:nth-child(6){ width:10%; }  /* Action */
+#partsTable td:nth-child(5){ width:15%; } /* Action */
 
 /* ===== BUTTONS ===== */
 .add-btn{
@@ -162,9 +158,15 @@ table input{
 
     .buttons,
     .add-btn,
-    .delete-btn,
-    table th:last-child,
-    table td:last-child{
+    .delete-btn{
+        display:none !important;
+    }
+
+    /* Sirf Action column hide */
+    #partsTable th:last-child,
+    #partsTable td:last-child,
+    #labourTable th:last-child,
+    #labourTable td:last-child{
         display:none !important;
     }
 
@@ -224,7 +226,6 @@ table input{
             <th>Part Name</th>
             <th>Qty</th>
             <th>Amount</th>
-            <th>Remark</th>
             <th>Action</th>
         </tr>
     </table>
@@ -302,7 +303,6 @@ function addPart(){
         <td><input></td>
         <td><input type="number" value="1" oninput="calculateTotal()"></td>
         <td><input type="number" value="0" oninput="calculateTotal()"></td>
-        <td><input></td>
         <td><button class="delete-btn" onclick="this.parentElement.parentElement.remove(); calculateTotal()">X</button></td>
     `;
 }
