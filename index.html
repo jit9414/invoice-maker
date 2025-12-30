@@ -5,84 +5,32 @@
 <title>Shri Ganesh Motors - Invoice</title>
 
 <style>
-body{
-    font-family: Arial, sans-serif;
-    background:#f4f6f8;
-    padding:20px;
-}
-.invoice-box{
-    max-width:900px;
-    margin:auto;
-    background:#fff;
-    padding:20px;
-    border:1px solid #000;
-}
-.header{
-    text-align:center;
-}
-.header h1{
-    margin:0;
-    font-size:28px;
-}
-.header p{
-    margin:3px 0;
-    font-size:13px;
-}
-.section{
-    margin-top:20px;
-}
-.grid{
-    display:grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap:10px;
-}
-.grid input, select{
-    padding:6px;
-    width:100%;
-}
-table{
-    width:100%;
-    border-collapse:collapse;
-    margin-top:10px;
-    table-layout:fixed;
-}
-table th, table td{
-    border:1px solid #000;
-    padding:6px;
-    text-align:center;
-    font-size:13px;
-}
-table input{
-    width:100%;
-}
-.add-btn{
-    margin-top:5px;
-    padding:6px 12px;
-}
-.delete-btn{
-    background:red;
-    color:#fff;
-    border:none;
-    padding:4px 6px;
-    cursor:pointer;
-}
-.total-box{
-    width:300px;
-    float:right;
-    margin-top:20px;
-}
-.buttons{
-    text-align:center;
-    margin-top:30px;
-}
+body{font-family:Arial,sans-serif;background:#f4f6f8;padding:20px}
+.invoice-box{max-width:900px;margin:auto;background:#fff;padding:20px;border:1px solid #000}
+.header{text-align:center}
+.header h1{margin:0;font-size:28px;font-weight:bold}
+.header p{margin:3px 0;font-size:13px}
+.section{margin-top:20px}
+.section-title{font-weight:bold;font-size:18px;border-bottom:2px solid #000;padding-bottom:5px;margin-bottom:10px}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.grid input,.grid select{width:100%;padding:6px}
+table{width:100%;border-collapse:collapse;margin-top:10px;table-layout:fixed}
+table th,table td{border:1px solid #000;padding:6px;text-align:center;font-size:13px}
+table input{width:100%;box-sizing:border-box}
+#partsTable th:nth-child(1),#partsTable td:nth-child(1){width:8%}
+#partsTable th:nth-child(2),#partsTable td:nth-child(2){width:42%}
+#partsTable th:nth-child(3),#partsTable td:nth-child(3){width:15%}
+#partsTable th:nth-child(4),#partsTable td:nth-child(4){width:20%}
+#partsTable th:nth-child(5),#partsTable td:nth-child(5){width:15%}
+.add-btn{margin-top:5px;padding:6px 12px}
+.delete-btn{background:red;color:white;border:none;padding:4px 6px;cursor:pointer;font-size:12px}
+.total-box{margin-top:20px;width:300px;float:right}
+.total-box table td{text-align:right}
+.buttons{text-align:center;margin-top:30px}
 @media print{
-    .buttons,.add-btn,.delete-btn{ display:none; }
-    #partsTable th:last-child,
-    #partsTable td:last-child,
-    #labourTable th:last-child,
-    #labourTable td:last-child{
-        display:none;
-    }
+.buttons,.add-btn,.delete-btn{display:none}
+#partsTable th:last-child,#partsTable td:last-child,
+#labourTable th:last-child,#labourTable td:last-child{display:none}
 }
 </style>
 </head>
@@ -92,56 +40,43 @@ table input{
 <div class="invoice-box">
 
 <div class="header">
-    <h1>SHRI GANESH MOTORS</h1>
-    <p>Near Dharm Kanta, Bilara Road, Borunda, Jodhpur</p>
-    <p>📞 6376978548 | ✉ shriganeshmotors734@gmail.com</p>
+<h1>SHRI GANESH MOTORS</h1>
+<p>Near Dharm Kanta, Bilara Road, Borunda, Jodhpur</p>
+<p>📞 6376978548 | ✉ shriganeshmotors734@gmail.com</p>
 </div>
 
 <div class="section">
-    <div class="grid">
-        <input type="date" id="date">
-        <input placeholder="Invoice Number" id="invoiceNo">
-        <input placeholder="Customer Name" id="customer">
-        <input placeholder="Mobile" id="mobile">
-
-        <input placeholder="Address" id="address">
-        <input placeholder="Frame No" id="frame">
-        <input placeholder="Registration No" id="reg">
-        <input placeholder="Model Name" id="model">
-    </div>
-
-    <select id="serviceType" style="margin-top:10px;">
-        <option>Service Type</option>
-        <option>FSC 1</option>
-        <option>FSC 2</option>
-        <option>PAID SERVICE</option>
-        <option>GENERAL CHECKUP</option>
-    </select>
+<div class="grid">
+<input type="date" id="date">
+<input placeholder="Invoice Number" id="invoiceNo">
+<input placeholder="Customer Name" id="customer">
+<input placeholder="Mobile" id="mobile">
+<input placeholder="Address" id="address">
+<input placeholder="Frame No" id="frame">
+<input placeholder="Registration No" id="reg">
+<input placeholder="Model Name" id="model">
+</div>
+<select id="serviceType" style="margin-top:10px">
+<option>Service Type</option>
+<option>FSC 1</option>
+<option>FSC 2</option>
+<option>PAID SERVICE</option>
+<option>GENERAL CHECKUP</option>
+</select>
 </div>
 
 <div class="section">
-<h3>Parts Details</h3>
+<div class="section-title">Parts Details</div>
 <table id="partsTable">
-<tr>
-<th>Sr</th>
-<th>Part Name</th>
-<th>Qty</th>
-<th>Amount</th>
-<th>Action</th>
-</tr>
+<tr><th>Sr.</th><th>Part Name</th><th>Qty</th><th>Amount</th><th>Action</th></tr>
 </table>
 <button class="add-btn" onclick="addPart()">+ Add Part</button>
 </div>
 
 <div class="section">
-<h3>Labour Details</h3>
+<div class="section-title">Labour Details</div>
 <table id="labourTable">
-<tr>
-<th>Sr</th>
-<th>Labour</th>
-<th>Amount</th>
-<th>Action</th>
-</tr>
+<tr><th>Sr.</th><th>Labour Name</th><th>Amount</th><th>Action</th></tr>
 </table>
 <button class="add-btn" onclick="addLabour()">+ Add Labour</button>
 </div>
@@ -157,83 +92,69 @@ table input{
 <div style="clear:both"></div>
 
 <div class="buttons">
-<button onclick="saveInvoice()">Save & Print Invoice</button>
+<button onclick="saveInvoice()">Save + Print</button>
+<button onclick="backupInvoice()">Backup Invoice</button>
 </div>
 
 </div>
 
 <script>
-const API_URL = "https://script.google.com/macros/s/AKfycbwAqAdNziopxZ0SjwZhK03Dl_R4v2Wa9dOqkzlsbAB1T75yAmpB7hGmQGi0YO_W8sv0/exec";
+const API_URL="https://script.google.com/macros/s/AKfycbwAqAdNziopxZ0SjwZhK03Dl_R4v2Wa9dOqkzlsbAB1T75yAmpB7hGmQGi0YO_W8sv0/exec";
 
 let p=0,l=0;
 
 function addPart(){
 p++;
-let r=document.getElementById("partsTable").insertRow();
+let r=partsTable.insertRow();
 r.innerHTML=`<td>${p}</td><td><input></td><td><input type="number" value="1" oninput="calc()"></td><td><input type="number" value="0" oninput="calc()"></td><td><button class="delete-btn" onclick="this.parentElement.parentElement.remove();calc()">X</button></td>`;
 }
 
 function addLabour(){
 l++;
-let r=document.getElementById("labourTable").insertRow();
+let r=labourTable.insertRow();
 r.innerHTML=`<td>${l}</td><td><input></td><td><input type="number" value="0" oninput="calc()"></td><td><button class="delete-btn" onclick="this.parentElement.parentElement.remove();calc()">X</button></td>`;
 }
 
 function calc(){
 let pt=0;
-document.querySelectorAll("#partsTable tr").forEach((r,i)=>{
-if(i>0){
-pt+= (r.cells[2].children[0].value||0)*(r.cells[3].children[0].value||0);
-}});
+document.querySelectorAll("#partsTable tr").forEach((r,i)=>{if(i>0)pt+=r.cells[2].children[0].value*r.cells[3].children[0].value});
 let lt=0;
-document.querySelectorAll("#labourTable tr").forEach((r,i)=>{
-if(i>0){ lt+=Number(r.cells[2].children[0].value||0); }
-});
-document.getElementById("partsTotal").innerText=pt;
-document.getElementById("labourTotal").innerText=lt;
-document.getElementById("grandTotal").innerText=pt+lt;
+document.querySelectorAll("#labourTable tr").forEach((r,i)=>{if(i>0)lt+=Number(r.cells[2].children[0].value)});
+partsTotal.innerText=pt;
+labourTotal.innerText=lt;
+grandTotal.innerText=pt+lt;
+}
+
+function collectData(){
+return {
+date:date.value,
+invoiceNo:invoiceNo.value,
+customer:customer.value,
+mobile:mobile.value,
+address:address.value,
+frame:frame.value,
+reg:reg.value,
+model:model.value,
+serviceType:serviceType.value,
+partsTotal:partsTotal.innerText,
+labourTotal:labourTotal.innerText,
+grandTotal:grandTotal.innerText,
+timestamp:new Date().toISOString()
+};
 }
 
 function saveInvoice(){
-calc();
+fetch(API_URL,{method:"POST",body:JSON.stringify(collectData())})
+.then(()=>window.print())
+.catch(()=>alert("Save failed"));
+}
 
-let parts=[],labours=[];
-document.querySelectorAll("#partsTable tr").forEach((r,i)=>{
-if(i>0){
-parts.push({
-name:r.cells[1].children[0].value,
-qty:r.cells[2].children[0].value,
-amount:r.cells[3].children[0].value
-});
-}});
-document.querySelectorAll("#labourTable tr").forEach((r,i)=>{
-if(i>0){
-labours.push({
-name:r.cells[1].children[0].value,
-amount:r.cells[2].children[0].value
-});
-}});
-
-let data={
-date:date.value,
-invoiceNo:invoiceNo.value,
-customerName:customer.value,
-mobile:mobile.value,
-address:address.value,
-frameNo:frame.value,
-regNo:reg.value,
-model:model.value,
-serviceType:serviceType.value,
-parts:parts,
-labours:labours,
-partsTotal:partsTotal.innerText,
-labourTotal:labourTotal.innerText,
-grandTotal:grandTotal.innerText
-};
-
-fetch(API_URL,{method:"POST",body:JSON.stringify(data)})
-.then(()=>{ alert("Invoice Saved Successfully ✅"); window.print(); })
-.catch(()=>alert("Error ❌"));
+function backupInvoice(){
+const blob=new Blob([JSON.stringify(collectData(),null,2)],{type:"application/json"});
+const a=document.createElement("a");
+a.href=URL.createObjectURL(blob);
+a.download="invoice-backup.json";
+a.click();
 }
 </script>
 
